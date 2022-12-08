@@ -41,3 +41,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - editorconfig
 - prettier
 - SSR do styled-components
+
+
+api https://deividfortuna.github.io/fipe/
