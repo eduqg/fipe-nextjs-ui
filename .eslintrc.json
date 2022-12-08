@@ -2,11 +2,14 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "extends": [
     "plugin:react/recommended",
-    "standard-with-typescript"
+    "standard-with-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -14,9 +17,9 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier"
   ],
-  "rules": {},
   "parser": "@typescript-eslint/parser",
   "settings": {
     "react": {
@@ -39,5 +42,10 @@
         ]
       }
     }
-  ]
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "space-before-function-paren": "off",
+    "react/prop-types": "off"
+  }
 }
