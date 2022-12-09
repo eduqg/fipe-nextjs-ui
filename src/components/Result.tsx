@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container } from '../styles/components/Result';
 
-import { Fipe } from '../pages';
+import { Fipe } from '../types/Fipe';
 
 interface ResultProps {
   fipe: Fipe;
