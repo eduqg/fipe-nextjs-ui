@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { SelectInputProps, SelectChangeEvent } from '@mui/material/Select/SelectInput';
-import axios from 'axios';
+
+import { useBrands } from '../hooks/brands';
+import { useModels } from '../hooks/models';
+import { useYears } from '../hooks/years';
 
 import { Select, SelectOption } from '../components/Select';
 import { Button } from '../components/Button';
@@ -11,52 +14,19 @@ import { RequestFipe } from '../pages';
 import { Brand } from '../types/Brand';
 import { Model } from '../types/Model';
 import { Year } from '../types/Year';
-import { useBrands } from '../hooks/brands';
-
-interface ResponseModels {
-  anos: Year[];
-  modelos: Model[];
-}
 
 interface FormFipeProps {
   handleGetFipe: (data: RequestFipe) => void;
 }
 
 export default function FormFipe({ handleGetFipe }: FormFipeProps) {
+  const { brands } = useBrands();
+  const { models, loadModels } = useModels();
+  const { years, loadYears } = useYears();
+
   const [brand, setBrand] = useState<Brand | ''>('');
   const [model, setModel] = useState<Model | ''>('');
   const [year, setYear] = useState<Year | ''>('');
-
-  const { brands } = useBrands();
-  const [models, setModels] = useState<Array<{ codigo: string; nome: string }> | undefined>(undefined);
-  const [years, setYears] = useState<Year[] | undefined>(undefined);
-
-  const loadModels = async (brandId: string): Promise<void> => {
-    try {
-      const response = await axios.get<ResponseModels>(
-        `https://parallelum.com.br/fipe/api/v1/carros/marcas/${brandId}/modelos`,
-      );
-
-      if (response) {
-        setModels(response.data.modelos.map(item => ({ codigo: String(item.codigo), nome: item.nome })));
-        setYears(response.data.anos);
-      }
-    } catch (error) {
-      console.log('Erro ao carregar modelos');
-    }
-  };
-
-  const loadYears = async (brandId: string, yearId: string): Promise<void> => {
-    try {
-      const response = await axios.get<Year[]>(
-        `https://parallelum.com.br/fipe/api/v1/carros/marcas/${brandId}/modelos/${yearId}/anos`,
-      );
-
-      if (response) setYears(response.data);
-    } catch (error) {
-      console.log('Erro ao carregar anos');
-    }
-  };
 
   const handleChangeBrand = async (event: SelectChangeEvent<Brand>) => {
     const {
