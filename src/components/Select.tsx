@@ -9,6 +9,7 @@ export interface SelectOption {
 }
 
 interface SelectProps {
+  name: string;
   options: SelectOption[];
   selectProps?: MuiSelectProps;
   menuItemProps?: MenuItemProps;
@@ -16,6 +17,7 @@ interface SelectProps {
 }
 
 export function Select({
+  name,
   options,
   placeholder = 'Selecione um valor',
   selectProps = {},
@@ -27,6 +29,7 @@ export function Select({
       displayEmpty
       input={<OutlinedInput />}
       inputProps={{ 'aria-label': 'Without label' }}
+      id={`${name}-field`}
       {...selectProps}
     >
       <MenuItem disabled value="">

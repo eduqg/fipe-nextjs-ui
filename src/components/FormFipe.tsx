@@ -79,6 +79,7 @@ export default function FormFipe({ handleGetFipe }: FormFipeProps) {
       <Content>
         {brands && (
           <Select
+            name="brand"
             options={brands as SelectOption[]}
             placeholder="Selecione uma Marca"
             selectProps={{
@@ -90,6 +91,7 @@ export default function FormFipe({ handleGetFipe }: FormFipeProps) {
 
         {models && (
           <Select
+            name="model"
             options={models as SelectOption[]}
             placeholder="Selecione um Modelo"
             selectProps={{
@@ -101,6 +103,7 @@ export default function FormFipe({ handleGetFipe }: FormFipeProps) {
 
         {years && (
           <Select
+            name="year"
             options={years as SelectOption[]}
             placeholder="Selecione uma Ano"
             selectProps={{
