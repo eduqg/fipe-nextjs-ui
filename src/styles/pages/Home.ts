@@ -10,14 +10,12 @@ export const Container = styled.div`
   flex-direction: column;
 
   h1 {
-    font-size: 54px;
-    color: ${props => props.theme.colors.primary};
-    margin-top: 40px;
+    font-size: 32px;
+    text-align: center;
   }
 
-  p {
-    margin-top: 24px;
-    font-size: 24px;
-    line-height: 32px;
+  h2 {
+    font-size: 16px;
+    text-align: center;
   }
 `;

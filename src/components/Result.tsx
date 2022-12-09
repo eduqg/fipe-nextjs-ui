@@ -14,7 +14,7 @@ export default function Result({ fipe }: ResultProps) {
       <h1>
         Tabela Fipe: Preço {fipe.Marca} {fipe.Modelo} {fipe.AnoModelo}{' '}
       </h1>
-      <div>{fipe.Valor}</div>
+      <div className="price">{fipe.Valor}</div>
       <h3>Este é o preço de compra do veículo</h3>
     </Container>
   );

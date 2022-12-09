@@ -1,16 +1,14 @@
-import { Container } from '../styles/components/Result';
-
-import { RequestFipe } from '../pages';
-
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { SelectInputProps, SelectChangeEvent } from '@mui/material/Select/SelectInput';
 import axios from 'axios';
 
 import { Select, SelectOption } from '../components/Select';
-
 import { Button } from '../components/Button';
 
+import { Container, Content } from '../styles/components/FormFipe';
+
+import { RequestFipe } from '../pages';
 import { Brand } from '../types/Brand';
 import { Model } from '../types/Model';
 import { Year } from '../types/Year';
@@ -111,52 +109,54 @@ export default function FormFipe({ handleGetFipe }: FormFipeProps) {
 
       <h2>Consulte o valor de um veículo de forma gratuita</h2>
 
-      {brands && (
-        <Select
-          options={brands as SelectOption[]}
-          placeholder="Selecione uma Marca"
-          selectProps={{
-            value: (brand as Brand)?.nome || '',
-            onChange: handleChangeBrand as SelectInputProps<unknown>['onChange'],
-          }}
-        />
-      )}
+      <Content>
+        {brands && (
+          <Select
+            options={brands as SelectOption[]}
+            placeholder="Selecione uma Marca"
+            selectProps={{
+              value: (brand as Brand)?.nome || '',
+              onChange: handleChangeBrand as SelectInputProps<unknown>['onChange'],
+            }}
+          />
+        )}
 
-      {models && (
-        <Select
-          options={models as SelectOption[]}
-          placeholder="Selecione um Modelo"
-          selectProps={{
-            value: (model as Model)?.nome || '',
-            onChange: handleChangeModel as SelectInputProps<unknown>['onChange'],
-          }}
-        />
-      )}
+        {models && (
+          <Select
+            options={models as SelectOption[]}
+            placeholder="Selecione um Modelo"
+            selectProps={{
+              value: (model as Model)?.nome || '',
+              onChange: handleChangeModel as SelectInputProps<unknown>['onChange'],
+            }}
+          />
+        )}
 
-      {years && (
-        <Select
-          options={years as SelectOption[]}
-          placeholder="Selecione uma Ano"
-          selectProps={{
-            value: (year as Year)?.nome || '',
-            onChange: handleChangeYear as SelectInputProps<unknown>['onChange'],
-          }}
-        />
-      )}
+        {years && (
+          <Select
+            options={years as SelectOption[]}
+            placeholder="Selecione uma Ano"
+            selectProps={{
+              value: (year as Year)?.nome || '',
+              onChange: handleChangeYear as SelectInputProps<unknown>['onChange'],
+            }}
+          />
+        )}
 
-      <Button
-        variant="contained"
-        type="button"
-        onClick={() => {
-          handleGetFipe({
-            brandId: (brand as Brand).codigo,
-            modelId: (model as Model).codigo,
-            yearId: (year as Year).codigo,
-          });
-        }}
-      >
-        Consultar preço
-      </Button>
+        <Button
+          variant="contained"
+          type="button"
+          onClick={() => {
+            handleGetFipe({
+              brandId: (brand as Brand).codigo,
+              modelId: (model as Model).codigo,
+              yearId: (year as Year).codigo,
+            });
+          }}
+        >
+          Consultar preço
+        </Button>
+      </Content>
     </Container>
   );
 }
