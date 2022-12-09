@@ -8,11 +8,11 @@ export const Container = styled.section`
   height: 100%;
   min-height: 100vh;
   padding-top: 24vh;
-  background-color: ${({ theme }) => theme.colors.lightGreen};
+  background-color: ${props => props.theme.palette.secondary.light};
 
   div.price {
-    background-color: ${({ theme }) => theme.colors.green};
-    color: ${({ theme }) => theme.colors.white};
+    background-color: ${props => props.theme.palette.secondary.main};
+    color: ${props => props.theme.palette.primary?.light};
     font-weight: 700;
     border-radius: 24px;
     padding: 8px 16px;

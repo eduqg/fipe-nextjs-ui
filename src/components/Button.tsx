@@ -7,5 +7,9 @@ interface ButtonProps extends MuiButtonProps {
 }
 
 export function Button({ children, ...rest }: ButtonProps) {
-  return <MuiButton {...rest}>{children}</MuiButton>;
+  return (
+    <MuiButton sx={{ width: 200, height: 50, padding: 1, margin: 2 }} {...rest}>
+      {children}
+    </MuiButton>
+  );
 }

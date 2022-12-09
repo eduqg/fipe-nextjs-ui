@@ -22,7 +22,13 @@ export function Select({
   menuItemProps = {},
 }: SelectProps) {
   return (
-    <MuiSelect displayEmpty input={<OutlinedInput />} inputProps={{ 'aria-label': 'Without label' }} {...selectProps}>
+    <MuiSelect
+      sx={{ width: '100%' }}
+      displayEmpty
+      input={<OutlinedInput />}
+      inputProps={{ 'aria-label': 'Without label' }}
+      {...selectProps}
+    >
       <MenuItem disabled value="">
         <em>{placeholder}</em>
       </MenuItem>

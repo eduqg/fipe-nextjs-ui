@@ -1,12 +1,20 @@
 const theme = {
-  colors: {
-    background: '#f8f6fd',
-    primary: '#5d01be',
-    text: '#434342',
-    textLight: '#9295a5',
-    white: '#fefffe',
-    green: '#00a38c',
-    lightGreen: '#ddf4f2',
+  palette: {
+    primary: {
+      light: '#f8f6fd',
+      main: '#5d01be',
+    },
+    secondary: {
+      light: '#ddf4f2',
+      main: '#00a38c',
+    },
+    background: {
+      default: '#f8f6fd',
+    },
+    text: {
+      primary: '#434342',
+      secondary: '#9295a5',
+    },
   },
 };
 

@@ -8,12 +8,12 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.palette?.background?.default};
+    color: ${props => props.theme.palette?.text?.primary};
     font: 400 16px Roboto, sans-serif;
   }
 
   h1,h2,h3,h4,h5,p {
-    color: ${props => props.theme.colors.text};
+    color:  ${props => props.theme.palette?.text?.primary};
   }
 `;

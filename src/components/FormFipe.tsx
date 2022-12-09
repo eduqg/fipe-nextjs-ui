@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useQuery } from 'react-query';
 import { SelectInputProps, SelectChangeEvent } from '@mui/material/Select/SelectInput';
 import axios from 'axios';
 
@@ -12,6 +11,7 @@ import { RequestFipe } from '../pages';
 import { Brand } from '../types/Brand';
 import { Model } from '../types/Model';
 import { Year } from '../types/Year';
+import { useBrands } from '../hooks/brands';
 
 interface ResponseModels {
   anos: Year[];
@@ -22,15 +22,12 @@ interface FormFipeProps {
   handleGetFipe: (data: RequestFipe) => void;
 }
 
-const fetchBrands = async (): Promise<Brand[]> =>
-  await axios.get('https://parallelum.com.br/fipe/api/v1/carros/marcas').then(response => response.data);
-
 export default function FormFipe({ handleGetFipe }: FormFipeProps) {
   const [brand, setBrand] = useState<Brand | ''>('');
   const [model, setModel] = useState<Model | ''>('');
   const [year, setYear] = useState<Year | ''>('');
 
-  const { data: brands } = useQuery({ queryKey: ['brands'], queryFn: fetchBrands });
+  const { brands } = useBrands();
   const [models, setModels] = useState<Array<{ codigo: string; nome: string }> | undefined>(undefined);
   const [years, setYears] = useState<Year[] | undefined>(undefined);
 
@@ -146,6 +143,7 @@ export default function FormFipe({ handleGetFipe }: FormFipeProps) {
         <Button
           variant="contained"
           type="button"
+          disabled={brand === '' || model === '' || year === ''}
           onClick={() => {
             handleGetFipe({
               brandId: (brand as Brand).codigo,
