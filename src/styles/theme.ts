@@ -1,7 +1,7 @@
 const theme = {
   palette: {
     primary: {
-      light: '#f8f6fd',
+      light: '#fffefe',
       main: '#5d01be',
     },
     secondary: {
@@ -9,7 +9,7 @@ const theme = {
       main: '#00a38c',
     },
     background: {
-      default: '#f8f6fd',
+      default: '#f9f6fc',
     },
     text: {
       primary: '#434342',

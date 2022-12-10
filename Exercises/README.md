@@ -1,4 +1,4 @@
-# Automated Test Exercises
+# Exercises
 
 ## Getting started
 
