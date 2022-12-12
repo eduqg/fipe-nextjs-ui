@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
+import { GetStaticProps } from 'next';
 
 import FormFipe from '../components/FormFipe';
 import Result from '../components/Result';
@@ -8,6 +9,7 @@ import Result from '../components/Result';
 import { Container } from '../styles/pages/Home';
 
 import { Fipe } from '../types/Fipe';
+import { Brand } from '../types/Brand';
 
 export interface RequestFipe {
   brandId: string;
@@ -15,7 +17,11 @@ export interface RequestFipe {
   yearId: string;
 }
 
-export default function Home(): JSX.Element {
+interface HomeProps {
+  brands: Brand[];
+}
+
+export default function Home({ brands }: HomeProps): JSX.Element {
   const [fipe, setFipe] = useState<Fipe | undefined>(undefined);
 
   const handleGetFipe = async ({ brandId, modelId, yearId }: RequestFipe): Promise<void> => {
@@ -36,7 +42,18 @@ export default function Home(): JSX.Element {
         <title>Tabela Fipe</title>
       </Head>
 
-      {!fipe ? <FormFipe handleGetFipe={handleGetFipe} /> : <Result fipe={fipe} />}
+      {!fipe ? <FormFipe brands={brands} handleGetFipe={handleGetFipe} /> : <Result fipe={fipe} />}
     </Container>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await axios.get<Brand[]>('https://parallelum.com.br/fipe/api/v1/carros/marcas');
+
+  return {
+    props: {
+      brands: response?.data,
+    },
+    revalidate: 60 * 60 * 24 * 30,
+  };
+};

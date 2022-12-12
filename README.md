@@ -40,5 +40,4 @@ yarn test
 - Context API
 - Material UI
 - Theming
-- react-query
 - axios-mock-adapter

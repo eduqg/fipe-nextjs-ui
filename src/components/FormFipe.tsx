@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { SelectInputProps, SelectChangeEvent } from '@mui/material/Select/SelectInput';
 
-import { useBrands } from '../hooks/brands';
 import { useModels } from '../hooks/models';
 import { useYears } from '../hooks/years';
 
@@ -16,11 +15,11 @@ import { Model } from '../types/Model';
 import { Year } from '../types/Year';
 
 interface FormFipeProps {
+  brands: Brand[];
   handleGetFipe: (data: RequestFipe) => void;
 }
 
-export default function FormFipe({ handleGetFipe }: FormFipeProps) {
-  const { brands } = useBrands();
+export default function FormFipe({ brands, handleGetFipe }: FormFipeProps) {
   const { models, loadModels } = useModels();
   const { years, loadYears } = useYears();
 

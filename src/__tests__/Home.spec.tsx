@@ -12,39 +12,16 @@ import defaultTheme from '../styles/theme';
 
 const apiMock = new MockAdapter(axios);
 
-jest.mock('react-query', () => ({
-  useQuery: jest.fn().mockReturnValue({
-    data: [
-      {
-        nome: 'Acura',
-        codigo: '1',
-      },
-      {
-        nome: 'Agrale',
-        codigo: '2',
-      },
-    ],
-    isLoading: false,
-    error: {},
-  }),
-}));
-
-jest.mock('../hooks/brands', () => {
-  return {
-    useBrands: () => ({
-      brands: [
-        {
-          nome: 'Hyundai',
-          codigo: '26',
-        },
-        {
-          nome: 'Isuzu',
-          codigo: '27',
-        },
-      ],
-    }),
-  };
-});
+const mockBrands = [
+  {
+    nome: 'Hyundai',
+    codigo: '26',
+  },
+  {
+    nome: 'Isuzu',
+    codigo: '27',
+  },
+];
 
 jest.mock('../hooks/models', () => {
   return {
@@ -84,7 +61,7 @@ const ThemeWrapper = ({ children }: { children: ReactNode }) => (
 
 describe('Home', () => {
   it('renders Home', () => {
-    const { getByRole } = render(<Home />, { wrapper: ThemeWrapper });
+    const { getByRole } = render(<Home brands={mockBrands} />, { wrapper: ThemeWrapper });
     expect(
       getByRole('heading', {
         name: /consulte o valor de um veículo de forma gratuita/i,
@@ -105,7 +82,7 @@ describe('Home', () => {
       SiglaCombustivel: 'D',
     });
 
-    const { container } = render(<Home />, { wrapper: ThemeWrapper });
+    const { container } = render(<Home brands={mockBrands} />, { wrapper: ThemeWrapper });
 
     const brandSelect = container.querySelector('#brand-field') as HTMLDivElement;
     expect(brandSelect).toBeInTheDocument();
